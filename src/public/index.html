@@ -5,14 +5,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>University</title>
+    <link rel="stylesheet" type="text/css" href="/public/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 </head>
 <body>
 
-    <button id = "checkout">
-        Pay
-    </button>
+    <section class="game-section">
+        <h2 class="line-title">trending courses</h2>
+        <div class="owl-carousel custom-carousel owl-theme">
+          <div class="item active" style="background-image: url(https://image.cnbcfm.com/api/v1/image/105171995-Mark_Schlissel.jpg?v=1642354139);">
+            <div class="item-desc">
+              <h3>Curso de negociación</h3>
+              <button id="checkout" class = "pay-button">Join</button>
+              <p>Con este curso aprenderás algunos de los fundamentos básicos de la negociación dados por algunos de los expertos mas prestigiosos de la univeridad
+                de Michigan.
+              </p>
+            </div>
+          </div>
+          <div class="item" style="background-image: url(https://www.theforage.com/blog/wp-content/uploads/2023/03/working-at-google.jpg);">
+            <div class="item-desc">
+              <h3>Certificado profesional de Análisis de datos de Google</h3>
+              <button id="checkout" class = "pay-button">Join</button>
+              <p>Certificado digital por Google para entender como organizar conjuntos de datos en SQL, visualizar datos en la plataforma
+                y conseguir habilidades únicas.
+              </p>
+            </div>
+          </div>
+          <div class="item" style="background-image: url(https://images.unsplash.com/photo-1534665482403-a909d0d97c67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);">
+            <div class="item-desc">
+              <h3>Programa especializado: Python para todos</h3>
+              <button id="checkout" class = "pay-button">Join</button>
+              <p>Este programa esta destinado para personas que quieran aprender Python con estructuras de datos, 
+                con este curso aprenderás a programar una pagina web completa y con funcionalidades en Python.
+              </p>
+            </div>
+          </div>
+          <div class="item" style="background-image: url(https://images.unsplash.com/photo-1653669485599-e7eb1fcd143f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80);">
+            <div class="item-desc">
+              <h3>Bootcamp Programación, aprende toda las bases para crear tu web</h3>
+              <button id="checkout" class = "pay-button">Join</button>
+              <p>Con este Bootcamp aprenderás las nociones avanzadas para crear tu propia pagina web e interactuar con diferentes programas, JavaScript, MongoDB, React
+                HTML, CSS y Python.
+              </p>
+            </div>
+          </div>
+          <div class="item" style="background-image: url(https://images.unsplash.com/photo-1679083216051-aa510a1a2c0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1332&q=80);">
+            <div class="item-desc">
+              <h3>Inteligencia Artificial</h3>
+              <button id="checkout" class = "pay-button">Join</button>
+              <p>Curso rápido para aprender a programar en inteligencia artificial y saber cómo desarrollar aplicaciones y soluciones
+                En este curso podrás estudiar algunas herramientas de inteligencia artificial en Python.</p>
+            </div>
+          </div>
+          
+          <div class ="owl-dots">
+            <button role=" button" class = "owl-dot active">
+                <span></span>
+            </button>
+            <button role=" button" class = "owl-dot active">
+                <span></span>
+            </button>
+            <button role=" button" class = "owl-dot ">
+                <span></span>
+            </button>
+            <button role=" button" class = "owl-dot ">
+                <span></span>
+            </button>
+          </div>
+        </div>
+        </div>
+      </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 
     <script>
+
+        // Payment system 
        const button = document.getElementById("checkout")
        button.addEventListener("click", async () => {
         const res = await fetch("/create-checkout-session", {
@@ -22,6 +96,29 @@
         console.log(data)
         window.location.href = data.url
        })
+
+
+       
+       // OwlCarousel 
+       $(document).ready(function () {
+
+// Initialize the carousel
+$(".custom-carousel").owlCarousel({
+  autoWidth: true,
+  loop: true
+});
+
+// Attach click handler to carousel items
+$('.custom-carousel').on('click', '.item',"pay-button", function() {
+    event.stopPropagation();
+  $(".custom-carousel .item").not($(this)).removeClass("active");
+  $(this).toggleClass("active");
+  console.log("pay button clicked")
+});
+
+});
+
+
     </script>
     
 </body>
